@@ -1,3 +1,6 @@
+@computer_score = 0
+@user_score = 0
+
 def tie(choice)
   puts "We both played #{choice}! \nLet's play again or type \"stop\" to end the game."
 end
@@ -9,7 +12,9 @@ def user_wins?(user_choice, computer_choice)
 end
 
 def user_won(computer_choice)
-  puts "I played #{computer_choice}! YOU WIN! \nLet's play again or type \"stop\" to end the game."
+  @user_score += 1
+  puts "I played #{computer_choice}! YOU WIN!"
+  puts_score
 end
 
 def computer_wins?(user_choice, computer_choice)
@@ -19,7 +24,14 @@ def computer_wins?(user_choice, computer_choice)
 end
 
 def computer_won(user_choice, computer_choice)
-  puts "I played #{computer_choice}! I WIN! \n(Let's play again or type \"stop\" to end the game."
+  @computer_score += 1
+  puts "I played #{computer_choice}! I WIN!"
+  puts_score
+end
+
+def puts_score
+  puts "Computer: #{@computer_score} vs. User: #{@user_score}"
+  puts "(Let's play again or type \"stop\" to end the game."
 end
 
 def wrong_entry(user_choice)
@@ -29,7 +41,6 @@ def wrong_entry(user_choice)
 end
 
 def run_game
-
   puts "Let's play Rock, Paper, Scissors! \nGet ready with you choice!"
   user_choice = gets.chomp.capitalize
     while user_choice != "Stop"
@@ -39,9 +50,9 @@ def run_game
       elsif user_choice == computer_choice
 	      tie(user_choice)
       elsif user_wins?(user_choice, computer_choice)
-        user_won(user_choice, computer_choice)
+        user_won(computer_choice)
       elsif computer_wins?(user_choice, computer_choice)
-        computer_won(computer_choice)
+        computer_won(user_choice, computer_choice)
       end
       user_choice = gets.chomp.capitalize
     end
