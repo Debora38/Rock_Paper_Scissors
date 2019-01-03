@@ -37,7 +37,7 @@ def computer_won
 end
 
 def puts_score
-  puts "Computer: #{@computer_score} vs. User: #{@user_score}"
+  puts "Computer: #{@computer_score} vs. #{@user_name}: #{@user_score}"
 end
 
 def play_again?
@@ -53,17 +53,24 @@ end
 def game_over
   puts_score
   if @computer_score > @user_score
-    puts "It seems like I won!\nGood match and come back again!"
+    puts "It seems like I won!\nGood match #{@user_name} and come back again!"
   elsif @computer_score < @user_score
-    puts "You defeated me!\nWell played and come back again!"
+    puts "You defeated me!\nWell played #{@user_name} and come back again!"
   else
-    puts "It was a tie!\nWell played and come back again!"
+    puts "It was a tie!\nWell played #{@user_name} and come back again!"
   end
   exit
 end
 
+def start_game
+  puts "Let's play Rock, Paper, Scissors!"
+  puts "What is your name?"
+  @user_name = gets.chomp.capitalize
+  puts "Get ready with your choice, #{@user_name}"
+end
+
 def run_game
-  puts "Let's play Rock, Paper, Scissors! \nGet ready with your choice!"
+  start_game
   loop do
     user_choice = gets.chomp.capitalize
     computer_selects
