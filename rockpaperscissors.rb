@@ -7,7 +7,6 @@ end
 
 def tie
   puts "We both played #{@computer_choice}!"
-  play_again?
 end
 
 def user_wins?(user_choice)
@@ -19,8 +18,6 @@ end
 def user_won
   @user_score += 1
   puts "I played #{@computer_choice}! YOU WIN!"
-  puts_score
-  play_again?
 end
 
 def computer_wins?(user_choice)
@@ -32,8 +29,6 @@ end
 def computer_won
   @computer_score += 1
   puts "I played #{@computer_choice}! I WIN!"
-  puts_score
-  play_again?
 end
 
 def puts_score
@@ -66,7 +61,15 @@ def start_game
   puts "Let's play Rock, Paper, Scissors!"
   puts "What is your name?"
   @user_name = gets.chomp.capitalize
-  puts "Get ready with your choice, #{@user_name}"
+  puts "Choose a winning score:"
+  @winning_score = gets.chomp.to_i
+  puts "All set, #{@user_name}!\nGet ready with your choice and let's start:"
+end
+
+def victory_by_score
+  if @computer_score == @winning_score || @user_score == @winning_score
+    game_over
+  end
 end
 
 def run_game
@@ -85,6 +88,9 @@ def run_game
     elsif computer_wins?(user_choice)
       computer_won
     end
+    victory_by_score
+    puts_score
+    play_again?
   end
 end
 
