@@ -10,9 +10,9 @@ def tie
 end
 
 def user_wins?(user_choice)
-  user_choice == "Paper" && @computer_choice == "Rock" ||
-  user_choice == "Scissors" && @computer_choice == "Paper" ||
-  user_choice == "Rock" && @computer_choice == "Scissors"
+  (user_choice == "Paper" && @computer_choice == "Rock") ||
+  (user_choice == "Scissors" && @computer_choice == "Paper") ||
+  (user_choice == "Rock" && @computer_choice == "Scissors")
 end
 
 def user_won
@@ -21,9 +21,9 @@ def user_won
 end
 
 def computer_wins?(user_choice)
-  user_choice == "Rock" && @computer_choice == "Paper" ||
-  user_choice == "Paper" && @computer_choice == "Scissors" ||
-  user_choice == "Scissors" && @computer_choice == "Rock"
+  (user_choice == "Rock" && @computer_choice == "Paper") ||
+  (user_choice == "Paper" && @computer_choice == "Scissors") ||
+  (user_choice == "Scissors" && @computer_choice == "Rock")
 end
 
 def computer_won
